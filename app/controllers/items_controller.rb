@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-=begin
+
   def index
     @items = Item.all
   end
@@ -16,5 +16,8 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-=end
+  private
+  def message_params
+    params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
+  end
 end
