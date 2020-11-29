@@ -10,5 +10,5 @@
     ]
 
     include ActiveHash::Associations
-    has_many :status
+    has_one :item
     end

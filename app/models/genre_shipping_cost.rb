@@ -6,6 +6,6 @@ class GenreShippingCost < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :shipping_cost
+  has_one :item
   end
 
