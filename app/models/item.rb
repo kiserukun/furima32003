@@ -12,12 +12,18 @@ class Item < ApplicationRecord
     validates :image
     validates :product_name
     validates :description
-    validates :selling_price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 999_999_999 }
-    validates :genre_shipping_cost_id, numericality: { other_than: 1 }
-    validates :genre_shipping_day_id, numericality: { other_than: 1 }
-    validates :genre_status_id, numericality: { other_than: 1 }
-    validates :genre_id, numericality: { other_than: 1 }
-    validates :genre_prefecture_id, numericality: { other_than: 1 }
+    validates :selling_price, format: { with: /\A[0-9]+\z/ }, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 999_999_999 }
+    validates :genre_shipping_cost_id
+    validates :genre_shipping_day_id
+    validates :genre_status_id
+    validates :genre_id
+    validates :genre_prefecture_id
   end
-  validates :selling_price, format: { with: /\A[0-9]+\z/ }
+  with_options numericality: { other_than: 1 } do
+    validates :genre_shipping_cost_id
+    validates :genre_shipping_day_id
+    validates :genre_status_id
+    validates :genre_id
+    validates :genre_prefecture_id
+  end
 end
