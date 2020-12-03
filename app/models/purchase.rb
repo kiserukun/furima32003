@@ -3,11 +3,11 @@ class Purchase
   attr_accessor :postal_code, :genre_prefecture_id, :city, :house_number, :building_name, :phone_number, :token,:user_id,:item_id
 
   with_options presence: true do
-   validates :postal_code#format: {with: /\A\d{3}[-]\d{4}\z/ }
-   validates :genre_prefecture_id#numericality: { other_than: 1 }
+   validates :postal_code, format: {with: /\A\d{3}[-]\d{4}\z/ }
+   validates :genre_prefecture_id, numericality: { other_than: 1 }
    validates :city
    validates :house_number
-   validates :phone_number#format: {with: /\A\d{11}\z/ }
+   validates :phone_number,format: {with: /\A\d{11}\z/ }
   # validates :token
    validates :user_id
    validates :item_id
