@@ -6,7 +6,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :genre_status
   belongs_to_active_hash :genre
   belongs_to_active_hash :genre_prefecture
-  belongs_to :user # optional: true
+  belongs_to :user, optional: true
+  has_one :order
 
   with_options presence: true do
     validates :image
