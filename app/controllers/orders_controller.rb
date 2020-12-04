@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!
   before_action :purchase_set, only: [:index, :create ]
 
 
@@ -8,6 +8,9 @@ class OrdersController < ApplicationController
   end
 
   def create
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
     @purchase = Purchase.new(purchase_params)
     if @purchase.valid?
       pay_item
