@@ -3,11 +3,14 @@ class OrdersController < ApplicationController
   before_action :purchase_set, only: [:index, :create]
 
   def index
+    if @item.order != nil
+      redirect_to root_path
+    end
+    redirect_to root_path if current_user.id == @item.user_id
     @purchase = Purchase.new
   end
 
   def create
-    redirect_to root_path if current_user.id == @item.user_id
     @purchase = Purchase.new(purchase_params)
     if @purchase.valid?
       pay_item
