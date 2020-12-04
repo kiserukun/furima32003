@@ -22,9 +22,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user.id == @item.user_id
-    redirect_to action: :index
-    end
+    redirect_to action: :index unless current_user.id == @item.user_id
   end
 
   def update
@@ -36,14 +34,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    unless current_user.id == @item.user_id
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless current_user.id == @item.user_id
     @item.destroy
     redirect_to root_path
   end
 
-private
+  private
 
   def item_params
     params.require(:item).permit(:image, :product_name, :description, :selling_price, :genre_id, :genre_status_id, :genre_shipping_cost_id, :genre_prefecture_id, :genre_shipping_day_id).merge(user_id: current_user.id)
