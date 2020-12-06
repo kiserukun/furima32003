@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :purchase_set, only: [:index, :create]
 
   def index
-    redirect_to root_path if current_user.id == @item.user_id && !@item.order.nil?
+    redirect_to root_path if current_user.id == @item.user_id || !@item.order.nil?
     @purchase = Purchase.new
   end
 
