@@ -74,6 +74,7 @@
     </div>
   </div>
 <% if user_signed_in? %>
+<% unless current_user.id == @item.user_id && @item.order == nil %>
   <div class="comment-box">
   <%= form_with(model: [@item, @comment], local: true) do |f| %>
       <%= f.text_area :text, rows: "2" , class:"comment-text" %>
@@ -93,6 +94,7 @@
       <% end %>
       </div>
   </div>
+  <% end%> 
   <% end %>
   <div class="links">
     <a href="#" class="change-item-btn">
