@@ -21,7 +21,7 @@ class Item < ApplicationRecord
     validates :genre_id
     validates :genre_prefecture_id
   end
-  with_options numericality: { other_than: 1, message: "を選択してください"} do
+  with_options numericality: { other_than: 1, message: 'を選択してください' } do
     validates :genre_shipping_cost_id
     validates :genre_shipping_day_id
     validates :genre_status_id

@@ -44,13 +44,13 @@ describe User do
       it 'nameが空だと登録できない' do
         @user.name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("ニックネームを入力してください")
+        expect(@user.errors.full_messages).to include('ニックネームを入力してください')
       end
 
       it 'emailが空では登録できない' do
         @user.email = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Eメールを入力してください")
+        expect(@user.errors.full_messages).to include('Eメールを入力してください')
       end
       it '重複したemailが存在する場合登録できない' do
         @user.save
@@ -67,24 +67,24 @@ describe User do
       it 'passwordが空では登録できない' do
         @user.password = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワードを入力してください", "パスワードは不正な値です", "パスワード（確認用）とパスワードの入力が一致しません")
+        expect(@user.errors.full_messages).to include('パスワードを入力してください', 'パスワードは不正な値です', 'パスワード（確認用）とパスワードの入力が一致しません')
       end
       it 'passwordが5文字以下であれば登録できない' do
         @user.password = '00000'
         @user.password_confirmation = '00000'
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワードは6文字以上で入力してください", "パスワードは不正な値です")
+        expect(@user.errors.full_messages).to include('パスワードは6文字以上で入力してください', 'パスワードは不正な値です')
       end
       it 'passwordが存在してもpassword_confirmationが空では登録できない' do
         @user.password_confirmation = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません")
+        expect(@user.errors.full_messages).to include('パスワード（確認用）とパスワードの入力が一致しません')
       end
       it 'passwordとpassword_confirmationが違えば登録できない' do
         @user.password = '000aaa'
         @user.password_confirmation = '000aa0'
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません")
+        expect(@user.errors.full_messages).to include('パスワード（確認用）とパスワードの入力が一致しません')
       end
       it 'passwordが6文字以上で数字だけであれば登録できない' do
         @user.password = '000000'
@@ -114,28 +114,28 @@ describe User do
       it 'first_nameが空だと登録できない' do
         @user.first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("苗字を入力してください", "苗字は不正な値です")
+        expect(@user.errors.full_messages).to include('苗字を入力してください', '苗字は不正な値です')
       end
       it 'first_nameが半角カタカナだと登録できない' do
         @user.first_name = 'ｱ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("苗字は不正な値です")
+        expect(@user.errors.full_messages).to include('苗字は不正な値です')
       end
       it 'first_nameが半角英字だと登録できない' do
         @user.first_name = 'a'
         @user.valid?
-        expect(@user.errors.full_messages).to include("苗字は不正な値です")
+        expect(@user.errors.full_messages).to include('苗字は不正な値です')
       end
       it 'first_nameが半角数字だと登録できない' do
         @user.first_name = '1'
         @user.valid?
-        expect(@user.errors.full_messages).to include("苗字は不正な値です")
+        expect(@user.errors.full_messages).to include('苗字は不正な値です')
       end
 
       it 'last_nameが空だと登録できない' do
         @user.last_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("名前を入力してください", "名前は不正な値です")
+        expect(@user.errors.full_messages).to include('名前を入力してください', '名前は不正な値です')
       end
       it 'last_nameが半角カタカナだと登録できない' do
         @user.last_name = 'ｱ'
@@ -156,7 +156,7 @@ describe User do
       it 'first_name_kanaが空だと登録できない' do
         @user.first_name_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("苗字（カナ）を入力してください", "苗字（カナ）は不正な値です")
+        expect(@user.errors.full_messages).to include('苗字（カナ）を入力してください', '苗字（カナ）は不正な値です')
       end
       it 'first_name_kanaがひらがなだと登録できない' do
         @user.first_name_kana = 'え'
@@ -192,7 +192,7 @@ describe User do
       it 'last_name_kanaが空だと登録できない' do
         @user.last_name_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("名前（カナ）を入力してください", "名前（カナ）は不正な値です")
+        expect(@user.errors.full_messages).to include('名前（カナ）を入力してください', '名前（カナ）は不正な値です')
       end
       it 'last_name_kanaがひらがなだと登録できない' do
         @user.last_name_kana = 'え'
@@ -228,22 +228,22 @@ describe User do
       it 'birthdayが空だと登録できない' do
         @user.birthday = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("誕生日を入力してください")
+        expect(@user.errors.full_messages).to include('誕生日を入力してください')
       end
       it 'birthdayの年が空だと登録できない' do
         @user.birthday = '-----02-22'
         @user.valid?
-        expect(@user.errors.full_messages).to include("誕生日を入力してください")
+        expect(@user.errors.full_messages).to include('誕生日を入力してください')
       end
       it 'birthdayの月が空だと登録できない' do
         @user.birthday = '2020----22'
         @user.valid?
-        expect(@user.errors.full_messages).to include("誕生日を入力してください")
+        expect(@user.errors.full_messages).to include('誕生日を入力してください')
       end
       it 'birthdayの日が空だと登録できない' do
         @user.birthday = '2020-11---'
         @user.valid?
-        expect(@user.errors.full_messages).to include("誕生日を入力してください")
+        expect(@user.errors.full_messages).to include('誕生日を入力してください')
       end
     end
   end
