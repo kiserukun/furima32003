@@ -86,10 +86,10 @@
       <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
       <span>コメントする</span>
       <% end %>
-  <% end %>
-          <div id='comments'>
+      <% end %>
+      <div id='comments'>
       <% @comments.reverse_each do |comment| %>
-    <p><%= comment.text %></p>
+        <p><%= comment.text %></p>
       <% end %>
       </div>
     
